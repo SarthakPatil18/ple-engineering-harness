@@ -1,0 +1,2 @@
+openai>=1.90.0
+websockets>=13.0
