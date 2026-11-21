@@ -13,7 +13,7 @@
 # limitations under the License.
 
 name: ple-engineering-harness
-model_api: gemini/gemini-3.8-flash
+model_api: gemini/gemini-3.1-flash-lite
 install: >-
   uv venv --python 3.12 /opt/harness/venv
   && uv pip install --python /opt/harness/venv/bin/python -r {src}/requirements.txt
