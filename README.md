@@ -6,7 +6,7 @@ PLE (Physical-Engineering's Last Exam) agent harness submission.
 
 | File | Purpose |
 |---|---|
-| `submission.yaml` | Build/serve config; declares `model_api: google-cloud/claude-opus-5-5` |
+| `submission.yaml` | Build/serve config; declares `model_api: gemini/gemini-2.0-flash` |
 | `serve.py` | WebSocket server entrypoint on `$PORT` |
 | `harness.py` | Agent loop: model + bash/read_file/write_file tools, retries, wrap-up |
 | `taskbridge.py` | PLE serve protocol implementation (session, exec, read_file, write_file) |
