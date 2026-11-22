@@ -1,0 +1,41 @@
+{
+  "format": 1,
+  "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
+  "created": "2026-11-22T11:22:02Z",
+  "harness": {
+    "name": "ple-engineering-harness",
+    "model_api": "gemini/gemini-3.1-flash-lite",
+    "tree": "6bc0a500513bea4be09fa7567d41fff81279eaf01204545bc11471c9a6ce20ed",
+    "files": {
+      ".gitignore": "100644 965b6d5634b67fc42a25025a4092a7fed0e4f34d",
+      "LICENSE": "100644 d3e5d864553b7e5e092ab6912e344f970b885ba4",
+      "README.md": "100644 e780af7420c6aa9aabacaec790663a03a3542224",
+      "figures/architecture.png": "100644 fb626702d8ee5a5ee4d99057f51f247fdeb294f3",
+      "figures/failure_breakdown.png": "100644 151a7c5f3ef20da63ea45691a015462292c456ab",
+      "figures/score_vs_cost.png": "100644 4cf49e6c38046c950afe25018a237be5b2a243c3",
+      "harness.py": "100644 0d829621bc716a914f537f86dc86cbcd7b128c56",
+      "requirements.txt": "100644 2ae19d531ef6bbee8f9c7b4152c6cf5fef0a3c1e",
+      "serve.py": "100644 b473131d79d404b50dbfa61c83f282d65f2a5727",
+      "submission.yaml": "100644 81757bb4aba0236547434c182e24685d8f293ad9",
+      "taskbridge.py": "100644 26cc3d6cf8dbcaed859731ce9a6881f4ca8bfe40"
+    },
+    "commit": "f3ec741e065488d54f8c3422448d9cd8dd4dbc11",
+    "dirty": false
+  },
+  "tasks": {
+    "data-hall-mep-routing": {
+      "run": "ple-engineering-harness-20261122-164800",
+      "trial": "data-hall-mep-routing__z4Lx5Qf",
+      "ended": "ok",
+      "reward": 0.0,
+      "tree": "6bc0a500513bea4be09fa7567d41fff81279eaf01204545bc11471c9a6ce20ed",
+      "dev_set": "85ad6d96fbf76ee64d9fb6339b3bf342b07128a2ebadc0a10f008c95dac01a48",
+      "files": {
+        "app/files/dc_model__hall_seed000_d000__mep_routing/output/solution.py": "be5651fba2c13e1d2e4f2ef745ab0ec79b60ec96"
+      },
+      "final_message": "b6e58c679cdbeeaf6a6e98a83a290337bba4df79",
+      "deleted": [],
+      "skipped": []
+    }
+  }
+}
