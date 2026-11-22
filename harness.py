@@ -213,7 +213,7 @@ async def solve(session: taskbridge.Session) -> str:
           "model": MODEL,
           "messages": marked(messages),
           "tools": TOOLS,
-          "max_output_tokens": MAX_OUTPUT_TOKENS,
+          "max_completion_tokens": MAX_OUTPUT_TOKENS,
       }
       if EFFORT:
         kwargs["extra_body"] = {"reasoning_effort": EFFORT}
