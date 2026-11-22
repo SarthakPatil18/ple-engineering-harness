@@ -133,15 +133,23 @@ def marked(messages):
   return out
 
 
-async def run_tool(session, fn):
-  name = fn["name"]
+async def run_tool(session, call):
+  if hasattr(call, "function"):
+    name = call.function.name
+    raw_args = call.function.arguments
+  elif isinstance(call, dict):
+    fn = call.get("function") or call
+    name = fn.get("name") if isinstance(fn, dict) else getattr(fn, "name", "")
+    raw_args = fn.get("arguments", "{}") if isinstance(fn, dict) else getattr(fn, "arguments", "{}")
+  else:
+    name = getattr(call, "name", "")
+    raw_args = getattr(call, "arguments", "{}")
+
   try:
-    args = json.loads(fn["arguments"] or "{}")
+    args = json.loads(raw_args or "{}")
     if not isinstance(args, dict):
       raise TypeError("not a JSON object")
-    fn["arguments"] = json.dumps(args, allow_nan=False)
   except (TypeError, ValueError) as exc:
-    fn["arguments"] = "{}"
     return f"error: the arguments are not a JSON object ({exc}); send the call again"
   try:
     if name == "bash":
@@ -181,13 +189,17 @@ async def recover(session, messages, exc, waits, until):
 async def shorten(session, messages):
   truncated_any = False
   for m in messages:
-    content = m.get("content")
+    content = getattr(m, "content", None) if not isinstance(m, dict) else m.get("content")
     if isinstance(content, str) and len(content) > CUT_KEEP * 2:
       half = CUT_KEEP
-      m["content"] = (
+      new_content = (
           f"{content[:half]}\n[... {len(content) - 2 * half} characters cut ...]\n"
           f"{content[-half:]}"
       )
+      if isinstance(m, dict):
+        m["content"] = new_content
+      else:
+        m.content = new_content
       truncated_any = True
   return truncated_any
 
@@ -235,13 +247,13 @@ async def solve(session: taskbridge.Session) -> str:
       return final
 
     tool_results = []
-    for call in msg.tool_calls:
+    for call in (msg.tool_calls or []):
       result = await run_tool(session, call)
+      call_id = getattr(call, "id", None) or (call.get("id") if isinstance(call, dict) else "")
       tool_results.append(
           {
               "role": "tool",
-              "tool_call_id": call.id,
-              "name": call.name,
+              "tool_call_id": call_id,
               "content": result,
           }
       )
